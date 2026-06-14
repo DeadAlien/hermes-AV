@@ -1,0 +1,7 @@
+Application
+   ↓
+HAL
+   ↓
+MCAL
+   ↓
+Registers
