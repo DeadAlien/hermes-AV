@@ -1,0 +1,22 @@
+#ifndef FAULT_CODES_H
+#define FAULT_CODES_H
+
+#include <stdint.h>
+
+typedef enum
+{
+    FAULT_NONE           = 0U,
+    FAULT_LOW_BATTERY    = 1U,
+    FAULT_MOTOR_DRIVER   = 2U,
+    FAULT_STEERING_SERVO = 3U,
+    FAULT_SPI_TIMEOUT    = 4U,
+    FAULT_UART_TIMEOUT   = 5U,
+    FAULT_SENSOR_FAILURE = 6U,
+    FAULT_WATCHDOG_RESET = 7U,
+    FAULT_INVALID_PACKET = 8U,
+    FAULT_CRC_FAILURE    = 9U,
+    FAULT_AI_FAILURE     = 10U,
+    FAULT_EMERGENCY_STOP = 11U
+} FaultCode_t;
+
+#endif /* FAULT_CODES_H */

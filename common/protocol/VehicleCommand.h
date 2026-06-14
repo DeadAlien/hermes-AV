@@ -5,7 +5,7 @@
 
 typedef enum
 {
-    MODE_INIT = 0,
+    MODE_INIT = 0U,
     MODE_IDLE,
     MODE_MANUAL,
     MODE_AUTONOMOUS,
@@ -14,10 +14,11 @@ typedef enum
 
 typedef struct
 {
-    int16_t targetSpeed;
-    int16_t steeringAngle;
+    int16_t       targetSpeed;
+    int16_t       steeringAngle;
     VehicleMode_t mode;
-    uint8_t emergencyStop;
+    uint8_t       emergencyStop;
+    uint8_t       reserved;
 } VehicleCommand_t;
 
-#endif
+#endif /* VEHICLE_COMMAND_H */

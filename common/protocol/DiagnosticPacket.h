@@ -5,17 +5,17 @@
 
 typedef enum
 {
-    DIAG_READ_VERSION = 1,
-    DIAG_READ_FAULTS,
-    DIAG_CLEAR_FAULTS,
-    DIAG_ECU_RESET,
-    DIAG_HEALTH_CHECK
+    DIAG_READ_VERSION = 1U,
+    DIAG_READ_FAULTS  = 2U,
+    DIAG_CLEAR_FAULTS = 3U,
+    DIAG_ECU_RESET    = 4U,
+    DIAG_HEALTH_CHECK = 5U
 } DiagnosticService_t;
 
 typedef struct
 {
     DiagnosticService_t serviceId;
-    uint32_t parameter;
+    uint32_t            parameter;
 } DiagnosticPacket_t;
 
-#endif
+#endif /* DIAGNOSTIC_PACKET_H */
