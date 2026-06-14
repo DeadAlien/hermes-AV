@@ -1,0 +1,95 @@
+{
+"module_name": "Protocol",
+"module_version": "1.0.0",
+"owner": "Devashish Ranjan",
+
+"purpose": "Define communication between Raspberry Pi 5, ESP32 Gateway and Arduino ECU.",
+
+"requirements": [
+{
+"id": "PROT-REQ-001",
+"title": "Packet Framing",
+"description": "Every message shall contain SOF, Message ID, Length, Payload and CRC."
+},
+{
+"id": "PROT-REQ-002",
+"title": "Heartbeat",
+"description": "Each node shall transmit heartbeat periodically."
+}
+],
+
+"packet_format": {
+"sof": "0xAA",
+"max_payload": 32,
+"crc": "CRC16"
+},
+
+"message_types": [
+{
+"id": "0x01",
+"name": "Vehicle Command",
+"direction": "Pi5 -> ESP32 -> Arduino"
+},
+{
+"id": "0x02",
+"name": "Vehicle Status",
+"direction": "Arduino -> ESP32 -> Pi5"
+},
+{
+"id": "0x03",
+"name": "Heartbeat",
+"direction": "All Nodes"
+},
+{
+"id": "0x04",
+"name": "Fault Report",
+"direction": "Arduino -> ESP32 -> Pi5"
+},
+{
+"id": "0x05",
+"name": "Diagnostic",
+"direction": "Tool -> ESP32 -> Arduino"
+}
+],
+
+"states": [
+"INIT",
+"IDLE",
+"MANUAL",
+"AUTONOMOUS",
+"FAULT",
+"RECOVERY"
+],
+
+"transitions": [
+{
+"from": "INIT",
+"to": "IDLE",
+"condition": "All self checks passed"
+},
+{
+"from": "IDLE",
+"to": "AUTONOMOUS",
+"condition": "Autonomous command received"
+},
+{
+"from": "ANY",
+"to": "FAULT",
+"condition": "Critical fault detected"
+}
+],
+
+"faults": [
+"LOW_BATTERY",
+"INVALID_PACKET",
+"CRC_FAILURE",
+"WATCHDOG_TIMEOUT",
+"SENSOR_FAILURE"
+],
+
+"timing": {
+"heartbeat_ms": 500,
+"comm_timeout_ms": 1000,
+"watchdog_timeout_ms": 2000
+}
+}
