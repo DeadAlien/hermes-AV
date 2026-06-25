@@ -1,13 +1,13 @@
 #include "gpio.h"
 #include <avr/io.h>
 
-#define Is_valid_pin(pin)   (((pin) >= pin0) && ((pin) <= pin7))
+#define Is_valid_pin(pin)   (((pin) >= Pin0) && ((pin) <= Pin7))
 
-GPIO_Status_t GPIO_Init(PortName_t port, pinName_t pin, pinDirection_t direction)
+GPIO_Status_t GPIO_Init(GPIO_Port_t port, GPIO_Pin_t pin, GPIO_Direction_t direction)
 {
-    if(Is_valid_pin(pin) == False)
+    if(Is_valid_pin(pin) == false)
     {
-        return GPIO_ERROR_INVALID_pin;
+        return GPIO_ERROR_INVALID_PIN;
     }
 
 
@@ -50,11 +50,11 @@ GPIO_Status_t GPIO_Init(PortName_t port, pinName_t pin, pinDirection_t direction
     return GPIO_OK;
 }
 
-GPIO_Status_t GPIO_Set(PortName_t port, pinName_t pin)
+GPIO_Status_t GPIO_Set(GPIO_Port_t port, GPIO_Pin_t pin)
 {
-    if(Is_valid_pin(pin) == False)
+    if(Is_valid_pin(pin) == false)
     {
-        return GPIO_ERROR_INVALID_pin;
+        return GPIO_ERROR_INVALID_PIN;
     }
 
     switch(port)
@@ -67,11 +67,11 @@ GPIO_Status_t GPIO_Set(PortName_t port, pinName_t pin)
     return GPIO_OK;
 }
 
-GPIO_Status_t GPIO_Clear(PortName_t port, pinName_t pin)
+GPIO_Status_t GPIO_Clear(GPIO_Port_t port, GPIO_Pin_t pin)
 {
-    if(Is_valid_pin(pin) == False)
+    if(Is_valid_pin(pin) == false)
     {
-        return GPIO_ERROR_INVALID_pin;
+        return GPIO_ERROR_INVALID_PIN;
     }
 
     switch(port)
@@ -84,11 +84,11 @@ GPIO_Status_t GPIO_Clear(PortName_t port, pinName_t pin)
     return GPIO_OK;
 }
 
-GPIO_Status_t GPIO_Toggle(PortName_t port, pinName_t pin)
+GPIO_Status_t GPIO_Toggle(GPIO_Port_t port, GPIO_Pin_t pin)
 {
-    if(Is_valid_pin(pin) == False)
+    if(Is_valid_pin(pin) == false)
     {
-        return GPIO_ERROR_INVALID_pin;
+        return GPIO_ERROR_INVALID_PIN;
     }
 
     switch(port)
@@ -101,7 +101,7 @@ GPIO_Status_t GPIO_Toggle(PortName_t port, pinName_t pin)
     return GPIO_OK;
 }
 
-GPIO_Status_t GPIO_Read(PortName_t port, pinName_t pin, pinState_t* state)
+GPIO_Status_t GPIO_Read(GPIO_Port_t port, GPIO_Pin_t pin, PinState_t* state)
 {
     switch(port)
     {

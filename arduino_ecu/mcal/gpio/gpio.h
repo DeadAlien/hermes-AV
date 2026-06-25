@@ -2,12 +2,13 @@
 #define GPIO_H
 
 #include <stdint.h>
+#include <stdbool.h>
 
 typedef enum {
     PortB = 0,
     PortC,
     PortD
-} PortName_t;
+} GPIO_Port_t;
 
 typedef enum {
     Pin0 = 0,
@@ -18,12 +19,12 @@ typedef enum {
     Pin5,
     Pin6,
     Pin7
-} PinName_t;
+} GPIO_Pin_t;
 
 typedef enum {
     Input = 0,
     Output
-} PinDirection_t;
+} GPIO_Direction_t;
 
 typedef enum {
     Low = 0,
@@ -36,12 +37,12 @@ typedef enum {
     GPIO_ERROR_INVALID_PIN,
     GPIO_ERROR_INVALID_DIRECTION,
     GPIO_ERROR_INVALID_STATE
-}
+} GPIO_Status_t;
 
-GPIO_Status_t GPIO_Init(PortName_t port, PinName_t pin, PinDirection_t direction);
-GPIO_Status_t GPIO_Set(PortName_t port, PinName_t pin);
-GPIO_Status_t GPIO_Clear(PortName_t port, PinName_t pin);
-GPIO_Status_t GPIO_Toggle(PortName_t port, PinName_t pin);
-GPIO_Status_t GPIO_Read(PortName_t port, PinName_t pin, PinState_t* state);
+GPIO_Status_t GPIO_Init(GPIO_Port_t port, GPIO_Pin_t pin, GPIO_Direction_t direction);
+GPIO_Status_t GPIO_Set(GPIO_Port_t port, GPIO_Pin_t pin);
+GPIO_Status_t GPIO_Clear(GPIO_Port_t port, GPIO_Pin_t pin);
+GPIO_Status_t GPIO_Toggle(GPIO_Port_t port, GPIO_Pin_t pin);
+GPIO_Status_t GPIO_Read(GPIO_Port_t port, GPIO_Pin_t pin, PinState_t* state);
 
 #endif /* GPIO_H */
